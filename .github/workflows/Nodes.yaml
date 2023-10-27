@@ -59,14 +59,14 @@ jobs:
       run: ./utils/subconverter/subconverter -g --artifact "clash2base64"; rm utils/subconverter/check.yaml #output ./utils/subconverter/check & delete ./utils/subconverter/check.yaml
     - name: marge urls #because ./utils/subconverter/generate.ini so input ./utils/subconverter/check｜input ./sub/url2
       if: ${{ success() }}
-      run: base64 -d ./utils/subconverter/check > ./utils/rm/url1 && cat ./utils/rm/url1 ./sub/url2 > ./utils/rm/url; rm ./utils/subconverter/check ./utils/rm/url1 #output ./utils/rm/url & delete ./utils/subconverter/check ./utils/rm/url1 ./nodes
-    - name: remove & rename #input ./utils/rm/url
-      if: ${{ success() }}
-      run: cd ./utils/rm/ && npm start #output ./utils/rm/out
+      run: base64 -d ./utils/subconverter/check > ./utils/rm/url1 && cat ./utils/rm/url1 ./sub/url2 > ./utils/rm/out; rm ./utils/subconverter/check ./utils/rm/url1 #output ./utils/rm/url & delete ./utils/subconverter/check ./utils/rm/url1 ./nodes
+    #- name: remove & rename #input ./utils/rm/url
+    #  if: ${{ success() }}
+    #  run: cd ./utils/rm/ && npm start #output ./utils/rm/out
     - name: url & https
       if: ${{ success() }}
       run: | #input ./utils/rm/out
-         rm ./utils/rm/url             #delete ./utils/rm/url
+         #rm ./utils/rm/url             #delete ./utils/rm/url
          mv ./utils/rm/out ./url       #output ./url
          ./.github/url.sh > ./1        #output ./1
          cp url 2                      #output ./2
